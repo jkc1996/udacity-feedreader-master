@@ -33,8 +33,9 @@ $(function() {
          */
         it('URLs are defined and they are not empty', function() {
 
-            allFeeds.forEach(function(feed) {
+            allFeeds.forEach(function (feed) {
                 var feedUrl = feed.url;
+
                 expect(feedUrl).toBeDefined();
                 expect(feedUrl.length).not.toBe(0);
             });
@@ -125,22 +126,23 @@ $(function() {
         var initialFeed;
         var newFeed;
         // Due to async functionality we are loading the feed 0 (i.e Udacity blog) first.
-        beforeEach(function(done) {
+        beforeEach(function (done) {
             loadFeed(0, function() {
                 // This contains the html data for our initial feed.
                 initialFeed = $('.header-title').html();
-                done();
-            });
-        });
-        it('content changes', function(done) {
             loadFeed(1, function() {
                 // This contains the html data for our new feed.
                 newFeed = $('.header-title').html();
                 done();
             });
+            });
+        });
+        it('content changes', function(done) {
             // This test ensure that our initial feed is not equal to the new feed.
             expect(initialFeed).not.toBe(newFeed);
             done();
+           // console.log(initialFeed);
+           // console.log(newFeed);
         });
     });
 }());
